@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,33 +13,72 @@
 
   <!-- ============ ШАПКА ============ -->
   <header class="sticky top-0 z-40 backdrop-blur-xl bg-bg/80 border-b border-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-4 sm:gap-6 h-16">
-      <a href="#" class="font-extrabold text-xl tracking-tight shrink-0">
-        <span class="text-neon-rose">N</span>NIR
-      </a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <!-- Верхний ряд: лого + десктоп-поиск + навигация + вход -->
+      <div class="flex items-center gap-3 sm:gap-4 h-16">
+        <a href="#" class="font-extrabold text-xl tracking-tight shrink-0">
+          <span class="text-neon-rose">N</span>NIR
+        </a>
 
-      <!-- Поисковая строка -->
-      <div class="flex-1 max-w-xl hidden sm:flex">
+        <!-- Десктоп-поиск -->
+        <div class="flex-1 max-w-xl hidden sm:flex">
+          <div class="flex items-center w-full bg-surface border border-border rounded-full px-4 focus-within:border-neon-violet/60 transition">
+            <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="search" placeholder="Фильмы, сериалы, аниме, жанры…"
+                   class="flex-1 bg-transparent px-3 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none" />
+            <kbd class="hidden lg:inline text-[10px] text-mute border border-border rounded px-1.5 py-0.5">Ctrl K</kbd>
+          </div>
+        </div>
+
+        <!-- Десктоп-навигация -->
+        <nav class="hidden lg:flex items-center gap-1 text-sm text-mute ml-auto">
+          <a href="#classic" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Классика</a>
+          <a href="#rus" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Российское</a>
+          <a href="#anime" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Аниме</a>
+          <a href="#series" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Сериалы</a>
+        </nav>
+        <div class="flex-1 lg:hidden" />
+
+        <!-- Мобильное меню (без JS, на details) -->
+        <details class="relative lg:hidden">
+          <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface">
+            <svg class="w-5 h-5 text-pastel" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </summary>
+          <div class="absolute right-0 top-12 w-64 rounded-2xl bg-surface border border-border p-3 shadow-2xl shadow-black/50 z-50 space-y-1">
+            <!-- Мобильный поиск -->
+            <div class="flex items-center w-full bg-bg border border-border rounded-full px-3 mb-3">
+              <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="search" placeholder="Найти…"
+                     class="flex-1 bg-transparent px-2 py-2 text-sm text-pastel placeholder:text-mute focus:outline-none" />
+            </div>
+            <a href="#classic" class="block px-3 py-2 rounded-lg hover:bg-surface2 hover:text-pastel text-pastel/90">Классика</a>
+            <a href="#rus" class="block px-3 py-2 rounded-lg hover:bg-surface2 hover:text-pastel text-pastel/90">Российское</a>
+            <a href="#anime" class="block px-3 py-2 rounded-lg hover:bg-surface2 hover:text-pastel text-pastel/90">Аниме</a>
+            <a href="#series" class="block px-3 py-2 rounded-lg hover:bg-surface2 hover:text-pastel text-pastel/90">Сериалы</a>
+          </div>
+        </details>
+
+        <button class="shrink-0 px-3 sm:px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/30 hover:opacity-90 transition">
+          Войти
+        </button>
+      </div>
+
+      <!-- Мобильная поисковая строка (только < sm) -->
+      <div class="pb-3 sm:hidden -mt-1">
         <div class="flex items-center w-full bg-surface border border-border rounded-full px-4 focus-within:border-neon-violet/60 transition">
           <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <input type="search" placeholder="Фильмы, сериалы, аниме, жанры…"
-                 class="flex-1 bg-transparent px-3 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none" />
-          <kbd class="hidden lg:inline text-[10px] text-mute border border-border rounded px-1.5 py-0.5">Ctrl K</kbd>
+                 class="flex-1 bg-transparent px-3 py-2 text-sm text-pastel placeholder:text-mute focus:outline-none" />
         </div>
       </div>
-
-      <nav class="hidden lg:flex items-center gap-1 text-sm text-mute">
-        <a href="#classic" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Классика</a>
-        <a href="#rus" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Российское</a>
-        <a href="#anime" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Аниме</a>
-        <a href="#series" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Сериалы</a>
-      </nav>
-      <div class="flex-1 sm:hidden" />
-      <button class="shrink-0 px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/30 hover:opacity-90 transition">
-        Войти
-      </button>
     </div>
   </header>
 
@@ -52,30 +91,30 @@
         <span class="w-2 h-2 rounded-full bg-neon-rose animate-pulse"></span>
         Каталог: от советской классики до новинок аниме
       </span>
-      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight max-w-3xl">
+      <h1 class="text-[2.5rem] leading-[1.1] sm:text-6xl sm:leading-tight font-extrabold max-w-3xl">
         Смотри<br />
         <span class="bg-gradient-to-r from-neon-rose via-neon-acid to-neon-violet bg-clip-text text-transparent">без границ.</span>
       </h1>
-      <p class="mt-5 text-mute text-lg max-w-xl">
+      <p class="mt-4 sm:mt-5 text-mute text-base sm:text-lg max-w-xl">
         Старые фильмы, российские ситкомы, аниме 2005–2017 и зарубежные
         сериалы — в одном каталоге. Только проверенные временем хиты.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="mt-6 sm:mt-8 flex flex-wrap gap-3">
         <a href="#classic"
-           class="px-6 py-3 rounded-full font-semibold bg-neon-rose text-white shadow-lg shadow-neon-rose/40 hover:opacity-90 transition">
+           class="px-5 sm:px-6 py-3 rounded-full font-semibold bg-neon-rose text-white shadow-lg shadow-neon-rose/40 hover:opacity-90 transition">
           Смотреть сейчас
         </a>
         <a href="#anime"
-           class="px-6 py-3 rounded-full font-semibold bg-surface border border-border hover:border-neon-violet/60 hover:text-pastel transition">
+           class="px-5 sm:px-6 py-3 rounded-full font-semibold bg-surface border border-border hover:border-neon-violet/60 hover:text-pastel transition">
           Аниме-подборка
         </a>
       </div>
-      <div class="mt-12 flex items-center gap-8 text-sm text-mute">
-        <div><div class="text-2xl font-bold text-pastel">120+</div>тайтлов</div>
+      <div class="mt-10 sm:mt-12 flex items-center justify-between sm:justify-start gap-4 sm:gap-8 text-sm text-mute max-w-sm sm:max-w-none">
+        <div><div class="text-xl sm:text-2xl font-bold text-pastel">120+</div>тайтлов</div>
         <div class="h-8 w-px bg-border"></div>
-        <div><div class="text-2xl font-bold text-pastel">0 ₽</div>бесплатно</div>
+        <div><div class="text-xl sm:text-2xl font-bold text-pastel">0 ₽</div>бесплатно</div>
         <div class="h-8 w-px bg-border"></div>
-        <div><div class="text-2xl font-bold text-pastel">HD</div>качество</div>
+        <div><div class="text-xl sm:text-2xl font-bold text-pastel">HD</div>качество</div>
       </div>
     </div>
   </section>
@@ -128,8 +167,8 @@
 
   <!-- ============ Советская классика / старые фильмы ============ -->
   <section id="classic" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div class="flex items-center justify-between mb-5">
-      <h2 class="text-xl font-bold">Классика · старые фильмы</h2>
+    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+      <h2 class="text-lg sm:text-xl font-bold">Классика · старые фильмы</h2>
       <a href="#" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -188,8 +227,8 @@
 
   <!-- ============ Российские сериалы ============ -->
   <section id="rus" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div class="flex items-center justify-between mb-5">
-      <h2 class="text-xl font-bold">Российские сериалы</h2>
+    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+      <h2 class="text-lg sm:text-xl font-bold">Российские сериалы</h2>
       <a href="#" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -248,8 +287,8 @@
 
   <!-- ============ Аниме 2005–2017 ============ -->
   <section id="anime" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div class="flex items-center justify-between mb-5">
-      <h2 class="text-xl font-bold">Аниме · 2005–2017</h2>
+    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+      <h2 class="text-lg sm:text-xl font-bold">Аниме · 2005–2017</h2>
       <div class="flex gap-2 text-xs">
         <button class="px-3 py-1.5 rounded-full bg-neon-rose/15 text-neon-rose font-semibold">Популярное</button>
         <button class="px-3 py-1.5 rounded-full bg-surface border border-border text-mute hover:text-pastel">Сэйнэн</button>
@@ -312,8 +351,8 @@
 
   <!-- ============ Зарубежные сериалы ============ -->
   <section id="series" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div class="flex items-center justify-between mb-5">
-      <h2 class="text-xl font-bold">Зарубежные сериалы</h2>
+    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+      <h2 class="text-lg sm:text-xl font-bold">Зарубежные сериалы</h2>
       <a href="#" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -372,14 +411,14 @@
 
   <!-- ============ CTA / ПОДПИСКА ============ -->
   <section id="new" class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <div class="rounded-3xl overflow-hidden relative p-10 sm:p-16 bg-gradient-to-br from-neon-violet/30 via-surface to-neon-rose/25 border border-border">
+    <div class="rounded-3xl overflow-hidden relative p-6 sm:p-16 bg-gradient-to-br from-neon-violet/30 via-surface to-neon-rose/25 border border-border">
       <div class="relative max-w-2xl">
-        <h2 class="text-3xl sm:text-4xl font-extrabold">Каждую неделю — свежие премьеры</h2>
-        <p class="mt-3 text-mute">
+        <h2 class="text-2xl sm:text-4xl font-extrabold">Каждую неделю — свежие премьеры</h2>
+        <p class="mt-3 text-sm sm:text-base text-mute">
           Подпишитесь на новости, чтобы первыми узнавать о новых релизах
           в мире кино и сериалов. Только отборное.
         </p>
-        <form class="mt-6 flex gap-2 max-w-md">
+        <form class="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-2 max-w-md">
           <input type="email" placeholder="ваш@email.ru"
                  class="flex-1 px-4 py-3 rounded-full bg-black/40 border border-border text-pastel placeholder:text-mute focus:outline-none focus:border-neon-rose/60" />
           <button class="px-5 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">Подписаться</button>
