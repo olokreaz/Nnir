@@ -14,13 +14,11 @@
   <!-- ============ ШАПКА ============ -->
   <header class="sticky top-0 z-40 backdrop-blur-xl bg-bg/80 border-b border-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <!-- Верхний ряд: лого + десктоп-поиск + навигация + вход -->
       <div class="flex items-center gap-3 sm:gap-4 h-16">
         <a href="#" class="font-extrabold text-xl tracking-tight shrink-0">
           <span class="text-neon-rose">N</span>NIR
         </a>
 
-        <!-- Десктоп-поиск -->
         <div class="flex-1 max-w-xl hidden sm:flex">
           <div class="flex items-center w-full bg-surface border border-border rounded-full px-4 focus-within:border-neon-violet/60 transition">
             <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -32,7 +30,6 @@
           </div>
         </div>
 
-        <!-- Десктоп-навигация -->
         <nav class="hidden lg:flex items-center gap-1 text-sm text-mute ml-auto">
           <a href="#classic" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Классика</a>
           <a href="#rus" class="px-3 py-1.5 rounded-full hover:text-pastel hover:bg-surface">Российское</a>
@@ -41,7 +38,6 @@
         </nav>
         <div class="flex-1 lg:hidden" />
 
-        <!-- Мобильное меню (без JS, на details) -->
         <details class="relative lg:hidden">
           <summary class="list-none [&::-webkit-details-marker]:hidden cursor-pointer w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface">
             <svg class="w-5 h-5 text-pastel" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -49,7 +45,6 @@
             </svg>
           </summary>
           <div class="absolute right-0 top-12 w-64 rounded-2xl bg-surface border border-border p-3 shadow-2xl shadow-black/50 z-50 space-y-1">
-            <!-- Мобильный поиск -->
             <div class="flex items-center w-full bg-bg border border-border rounded-full px-3 mb-3">
               <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -69,7 +64,6 @@
         </button>
       </div>
 
-      <!-- Мобильная поисковая строка (только < sm) -->
       <div class="pb-3 sm:hidden -mt-1">
         <div class="flex items-center w-full bg-surface border border-border rounded-full px-4 focus-within:border-neon-violet/60 transition">
           <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -128,7 +122,7 @@
     <div class="flex gap-4 overflow-x-auto pb-2">
       <div class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
         <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
-          <img src="assets/img/wide-11.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <img src="assets/img/kuhnya.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
           <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
           <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
             <div class="font-semibold z-10">Кухня</div>
@@ -137,10 +131,11 @@
         </div>
       </div>
       <div class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
-        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] bg-gradient-to-br from-neon-acid/40 to-neon-violet/40">
-          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/20 group-hover:scale-110 transition">▶</div>
-          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <div class="font-semibold">Атака титанов</div>
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
+          <img src="assets/img/attack-on-titan.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
+          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+            <div class="font-semibold z-10">Атака титанов</div>
             <div class="text-xs text-mute">осталось 4 серии</div>
           </div>
         </div>
@@ -155,10 +150,11 @@
         </div>
       </div>
       <div class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
-        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] bg-gradient-to-br from-neon-violet/40 to-neon-acid/40">
-          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/20 group-hover:scale-110 transition">▶</div>
-          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <div class="font-semibold">Врата Штейна</div>
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
+          <img src="assets/img/steins-gate.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
+          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+            <div class="font-semibold z-10">Врата Штейна</div>
             <div class="text-xs text-mute">1 сезон</div>
           </div>
         </div>
@@ -166,7 +162,7 @@
     </div>
   </section>
 
-  <!-- ============ Советская классика / старые фильмы ============ -->
+  <!-- ============ Советская классика / старые фильмы (градиенты-заглушки) ============ -->
   <section id="classic" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
     <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
       <h2 class="text-lg sm:text-xl font-bold">Классика · старые фильмы</h2>
@@ -174,28 +170,23 @@
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-          <!-- фон-картинка (заглушка) -->
-          <img src="assets/img/poster-11.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
-          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative z-10 font-semibold drop-shadow">Иван Васильевич меняет профессию</div>
-          <div class="relative z-10 text-[11px] text-mute">1973 · комедия</div>
+          <div class="relative font-semibold drop-shadow">Иван Васильевич меняет профессию</div>
+          <div class="relative text-[11px] text-mute">1973 · комедия</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-          <img src="assets/img/poster-22.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,5</span>
-          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-rose/50 to-neon-violet/30 p-2 flex flex-col items-start justify-end">
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,5</span>
+          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative z-10 font-semibold drop-shadow">Бриллиантовая рука</div>
-          <div class="relative z-10 text-[11px] text-mute">1968 · комедия</div>
+          <div class="relative font-semibold drop-shadow">Бриллиантовая рука</div>
+          <div class="relative text-[11px] text-mute">1968 · комедия</div>
         </div>
       </article>
       <article class="group cursor-pointer">
@@ -231,7 +222,7 @@
     </div>
   </section>
 
-  <!-- ============ Российские сериалы ============ -->
+  <!-- ============ Российские сериалы (реальные постеры) ============ -->
   <section id="rus" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
     <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
       <h2 class="text-lg sm:text-xl font-bold">Российские сериалы</h2>
@@ -240,7 +231,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <article class="group cursor-pointer">
         <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-          <img src="assets/img/poster-33.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <img src="assets/img/kuhnya.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
           <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,1</span>
           <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -251,49 +242,57 @@
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,6</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/interny.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,6</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Интерны</div>
-          <div class="relative text-[11px] text-mute">2010–2016 · 4 сезона</div>
+          <div class="relative z-10 font-semibold drop-shadow">Интерны</div>
+          <div class="relative z-10 text-[11px] text-mute">2010–2016 · 4 сезона</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-acid/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,8</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/ivanovy.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,8</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Ивановы-Ивановы</div>
-          <div class="relative text-[11px] text-mute">2017 · комедия</div>
+          <div class="relative z-10 font-semibold drop-shadow">Ивановы-Ивановы</div>
+          <div class="relative z-10 text-[11px] text-mute">2017 · комедия</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,0</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/univer.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,0</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Универ</div>
-          <div class="relative text-[11px] text-mute">2008 · ситком</div>
+          <div class="relative z-10 font-semibold drop-shadow">Универ</div>
+          <div class="relative z-10 text-[11px] text-mute">2008 · ситком</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-rose/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,4</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/fizruk.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">7,4</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Физрук</div>
-          <div class="relative text-[11px] text-mute">2014–2017 · ТНТ</div>
+          <div class="relative z-10 font-semibold drop-shadow">Физрук</div>
+          <div class="relative z-10 text-[11px] text-mute">2014–2017 · ТНТ</div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- ============ Аниме 2005–2017 ============ -->
+  <!-- ============ Аниме 2005–2017 (реальные постеры) ============ -->
   <section id="anime" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
     <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
       <h2 class="text-lg sm:text-xl font-bold">Аниме · 2005–2017</h2>
@@ -306,7 +305,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <article class="group cursor-pointer">
         <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-          <img src="assets/img/poster-44.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <img src="assets/img/death-note.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
           <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,0</span>
           <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -317,49 +316,57 @@
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,0</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/attack-on-titan.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,0</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Атака титанов</div>
-          <div class="relative text-[11px] text-mute">2013 · экшен</div>
+          <div class="relative z-10 font-semibold drop-shadow">Атака титанов</div>
+          <div class="relative z-10 text-[11px] text-mute">2013 · экшен</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-acid/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/steins-gate.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Врата Штейна</div>
-          <div class="relative text-[11px] text-mute">2011 · sci-fi</div>
+          <div class="relative z-10 font-semibold drop-shadow">Врата Штейна</div>
+          <div class="relative z-10 text-[11px] text-mute">2011 · sci-fi</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,6</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/fma-brotherhood.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,6</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Стальной алхимик: Братство</div>
-          <div class="relative text-[11px] text-mute">2009 · экшен</div>
+          <div class="relative z-10 font-semibold drop-shadow">Стальной алхимик: Братство</div>
+          <div class="relative z-10 text-[11px] text-mute">2009 · экшен</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-rose/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,5</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/demons.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,5</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Клинок, рассекающий демонов</div>
-          <div class="relative text-[11px] text-mute">2019 · фэнтези</div>
+          <div class="relative z-10 font-semibold drop-shadow">Клинок, рассекающий демонов</div>
+          <div class="relative z-10 text-[11px] text-mute">2019 · фэнтези</div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- ============ Зарубежные сериалы ============ -->
+  <!-- ============ Зарубежные сериалы (реальные постеры) ============ -->
   <section id="series" class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
     <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
       <h2 class="text-lg sm:text-xl font-bold">Зарубежные сериалы</h2>
@@ -368,7 +375,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <article class="group cursor-pointer">
         <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-          <img src="assets/img/poster-55.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <img src="assets/img/breaking-bad.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
           <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,3</span>
           <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
@@ -379,43 +386,51 @@
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-acid/50 to-neon-violet/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,2</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/game-of-thrones.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">9,2</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Игра престолов</div>
-          <div class="relative text-[11px] text-mute">2011 · фэнтези</div>
+          <div class="relative z-10 font-semibold drop-shadow">Игра престолов</div>
+          <div class="relative z-10 text-[11px] text-mute">2011 · фэнтези</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-rose/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,9</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/sherlock.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,9</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Шерлок</div>
-          <div class="relative text-[11px] text-mute">2010 · детектив</div>
+          <div class="relative z-10 font-semibold drop-shadow">Шерлок</div>
+          <div class="relative z-10 text-[11px] text-mute">2010 · детектив</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-violet/50 to-neon-acid/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,6</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/the-office.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,6</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Офис</div>
-          <div class="relative text-[11px] text-mute">2005–2013 · ситком</div>
+          <div class="relative z-10 font-semibold drop-shadow">Офис</div>
+          <div class="relative z-10 text-[11px] text-mute">2005–2013 · ситком</div>
         </div>
       </article>
       <article class="group cursor-pointer">
-        <div class="relative rounded-xl overflow-hidden aspect-[2/3] bg-gradient-to-br from-neon-acid/50 to-neon-rose/30 p-2 flex flex-col items-start justify-end">
-          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
-          <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+        <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+          <img src="assets/img/billions.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+          <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">8,7</span>
+          <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
             <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
           </div>
-          <div class="relative font-semibold drop-shadow">Миллиарды</div>
-          <div class="relative text-[11px] text-mute">2016 · драма</div>
+          <div class="relative z-10 font-semibold drop-shadow">Миллиарды</div>
+          <div class="relative z-10 text-[11px] text-mute">2016 · драма</div>
         </div>
       </article>
     </div>
