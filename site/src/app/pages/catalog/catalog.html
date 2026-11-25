@@ -1,0 +1,58 @@
+<!-- Каталог NNIR -->
+
+<!-- ЛЕНТА «ПРОДОЛЖИТЬ ПРОСМОТР» -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <div class="flex items-center justify-between mb-5">
+    <h2 class="text-xl font-bold">Продолжить просмотр</h2>
+    <a routerLink="/" class="text-sm text-neon-rose hover:underline">Все подборки →</a>
+  </div>
+  <div class="flex gap-4 overflow-x-auto pb-2">
+    @for (t of continueWatching(); track t.id) {
+      <a routerLink="/title/{{ t.id }}" class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
+          <img [src]="t.poster" [alt]="t.title" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
+          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+            <div class="font-semibold z-10">{{ t.title }}</div>
+            <div class="text-xs text-mute">{{ t.year }} · {{ t.genre }}</div>
+          </div>
+        </div>
+      </a>
+    } @empty {
+      <p class="text-mute">Загрузка…</p>
+    }
+  </div>
+</section>
+
+<!-- СЕКЦИИ КАТАЛОГА -->
+@for (section of sections(); track section.category) {
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+      <h2 class="text-lg sm:text-xl font-bold">{{ section.label }}</h2>
+      <a routerLink="/" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (t of section.items; track t.id) {
+        <a routerLink="/title/{{ t.id }}" class="group cursor-pointer">
+          <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
+            <img [src]="t.poster" [alt]="t.title" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+            <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">{{ t.rating.toLocaleString('ru-RU') }}</span>
+            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+              <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
+            </div>
+            <div class="relative z-10 font-semibold drop-shadow">{{ t.title }}</div>
+            <div class="relative z-10 text-[11px] text-mute">{{ t.year }} · {{ t.genre }}</div>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+}
+
+<!-- ОШИБКА -->
+@if (error()) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 text-center">
+    <p class="text-neon-rose">{{ error() }}</p>
+  </div>
+}

@@ -1,0 +1,214 @@
+[
+  {
+    "id": "ivan-vasilyevich",
+    "title": "Иван Васильевич меняет профессию",
+    "year": 1973,
+    "genre": "комедия",
+    "rating": 8.7,
+    "category": "classic",
+    "description": "Инженер-изобретатель Тимофеев создаёт машину времени, которая отправляет управдома Буншу в XVI век, а царя Ивана Грозного — в современную Москву.",
+    "poster": "img/ivan-vasilyevich.jpg"
+  },
+  {
+    "id": "brilliantovaya",
+    "title": "Бриллиантовая рука",
+    "year": 1968,
+    "genre": "комедия",
+    "rating": 8.5,
+    "category": "classic",
+    "description": "Скромный экономист Семён Горбунков случайно становится курьером контрабандистов с бриллиантами в гипсе.",
+    "poster": "img/brilliantovaya.jpg"
+  },
+  {
+    "id": "gentlemen",
+    "title": "Джентльмены удачи",
+    "year": 1971,
+    "genre": "комедия",
+    "rating": 8.6,
+    "category": "classic",
+    "description": "Заведующий детсадом Евгений Трошкин отправляется под видом знаменитого вора в Среднюю Азию, чтобы найти золотой шлем Александра Македонского.",
+    "poster": "img/gentlemen.jpg"
+  },
+  {
+    "id": "sluzhebny",
+    "title": "Служебный роман",
+    "year": 1977,
+    "genre": "мелодрама",
+    "rating": 8.3,
+    "category": "classic",
+    "description": "Скромный статистик Новосельцев и его суровая начальница Калугина неожиданно влюбляются друг в друга.",
+    "poster": "img/sluzhebny.jpg"
+  },
+  {
+    "id": "operaciya-y",
+    "title": "Операция «Ы»",
+    "year": 1965,
+    "genre": "комедия",
+    "rating": 8.7,
+    "category": "classic",
+    "description": "Три новеллы о приключениях студента Шурика: на стройке, в институте и с непутевым жуликом Балбесом.",
+    "poster": "img/operaciya-y.jpg"
+  },
+  {
+    "id": "kuhnya",
+    "title": "Кухня",
+    "year": 2012,
+    "genre": "комедия",
+    "rating": 8.1,
+    "category": "rus",
+    "seasons": 6,
+    "description": "Максим «Максик» Лавров приходит стажёром в элитный московский ресторан Claude Monet и попадает под крыло вспыльчивого шефа Виктора Баринова.",
+    "poster": "img/kuhnya.jpg"
+  },
+  {
+    "id": "interny",
+    "title": "Интерны",
+    "year": 2010,
+    "genre": "комедия",
+    "rating": 7.6,
+    "category": "rus",
+    "seasons": 4,
+    "description": "Четверо молодых интернов и их циничный наставник доктор Быков в городской больнице.",
+    "poster": "img/interny.jpg"
+  },
+  {
+    "id": "ivanovy",
+    "title": "Ивановы-Ивановы",
+    "year": 2017,
+    "genre": "комедия",
+    "rating": 7.8,
+    "category": "rus",
+    "seasons": 5,
+    "description": "Богатая и бедная семья Ивановых узнают, что их детей перепутали в роддоме.",
+    "poster": "img/ivanovy.jpg"
+  },
+  {
+    "id": "univer",
+    "title": "Универ",
+    "year": 2008,
+    "genre": "ситком",
+    "rating": 7.0,
+    "category": "rus",
+    "seasons": 5,
+    "description": "Студенты провинциального университета в Москве: учёба, любовь и вечные проблемы общежития.",
+    "poster": "img/univer.jpg"
+  },
+  {
+    "id": "fizruk",
+    "title": "Физрук",
+    "year": 2014,
+    "genre": "комедия",
+    "rating": 7.4,
+    "category": "rus",
+    "seasons": 4,
+    "description": "Бывший бандит Олег Фомин устраивается учителем физкультуры в школу, чтобы присматривать за сыном.",
+    "poster": "img/fizruk.jpg"
+  },
+  {
+    "id": "death-note",
+    "title": "Тетрадь смерти",
+    "year": 2006,
+    "genre": "триллер",
+    "rating": 9.0,
+    "category": "anime",
+    "description": "Старшеклассник Лайт Ягами находит тетрадь, в которой можно убить любого, записав его имя, и решает очистить мир от преступников.",
+    "poster": "img/death-note.jpg"
+  },
+  {
+    "id": "attack-on-titan",
+    "title": "Атака титанов",
+    "year": 2013,
+    "genre": "экшен",
+    "rating": 9.0,
+    "category": "anime",
+    "seasons": 4,
+    "description": "Человечество прячется за огромными стенами от титанов, пожирающих людей. Эрен Йегер клянётся уничтожить всех титанов.",
+    "poster": "img/attack-on-titan.jpg"
+  },
+  {
+    "id": "steins-gate",
+    "title": "Врата Штейна",
+    "year": 2011,
+    "genre": "sci-fi",
+    "rating": 8.7,
+    "category": "anime",
+    "description": "Безумный учёный Окабэ и его друзья случайно изобретают устройство для отправки сообщений в прошлое.",
+    "poster": "img/steins-gate.jpg"
+  },
+  {
+    "id": "fma-brotherhood",
+    "title": "Стальной алхимик: Братство",
+    "year": 2009,
+    "genre": "экшен",
+    "rating": 8.6,
+    "category": "anime",
+    "description": "Братья Элрики ищут философский камень, чтобы вернуть себе тела, потерянные при запретном алхимическом ритуале.",
+    "poster": "img/fma-brotherhood.jpg"
+  },
+  {
+    "id": "demons",
+    "title": "Клинок, рассекающий демонов",
+    "year": 2019,
+    "genre": "фэнтези",
+    "rating": 8.5,
+    "category": "anime",
+    "seasons": 4,
+    "description": "Тандзиро Камадо становится охотником на демонов, чтобы вернуть сестру Незуко, превращённую в демона, обратно в человека.",
+    "poster": "img/demons.jpg"
+  },
+  {
+    "id": "breaking-bad",
+    "title": "Во все тяжкие",
+    "year": 2008,
+    "genre": "драма",
+    "rating": 9.3,
+    "category": "series",
+    "seasons": 5,
+    "description": "Учитель химии Уолтер Уайт, узнав о смертельном диагнозе, начинает варить метамфетамин, чтобы обеспечить семью.",
+    "poster": "img/breaking-bad.jpg"
+  },
+  {
+    "id": "game-of-thrones",
+    "title": "Игра престолов",
+    "year": 2011,
+    "genre": "фэнтези",
+    "rating": 9.2,
+    "category": "series",
+    "seasons": 8,
+    "description": "Семь королевств Вестероса борются за Железный трон, пока на севере пробуждается древняя угроза.",
+    "poster": "img/game-of-thrones.jpg"
+  },
+  {
+    "id": "sherlock",
+    "title": "Шерлок",
+    "year": 2010,
+    "genre": "детектив",
+    "rating": 8.9,
+    "category": "series",
+    "seasons": 4,
+    "description": "Современный Шерлок Холмс раскрывает преступления в Лондоне вместе с доктором Ватсоном.",
+    "poster": "img/sherlock.jpg"
+  },
+  {
+    "id": "the-office",
+    "title": "Офис",
+    "year": 2005,
+    "genre": "ситком",
+    "rating": 8.6,
+    "category": "series",
+    "seasons": 9,
+    "description": "Документальный сериал о буднях сотрудников бумажной компании Dunder Mifflin и их невыносимом боссе Майкле Скотте.",
+    "poster": "img/the-office.jpg"
+  },
+  {
+    "id": "billions",
+    "title": "Миллиарды",
+    "year": 2016,
+    "genre": "драма",
+    "rating": 8.7,
+    "category": "series",
+    "seasons": 7,
+    "description": "Противостояние безжалостного хедж-фонд-менеджера Бобби Аксельрода и амбициозного прокурора Чака Роудса.",
+    "poster": "img/billions.jpg"
+  }
+]

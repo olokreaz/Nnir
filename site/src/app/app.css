@@ -1,0 +1,9 @@
+/* Глобальные стили приложения NNIR — базовые настройки поверх Tailwind. */
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-pastel);
+}

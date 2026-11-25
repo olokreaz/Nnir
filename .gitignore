@@ -1,10 +1,15 @@
 # Локальный бинарник Tailwind CLI (не часть приложения)
 tools/tailwindcss
 
-# Docker
+# Node / Angular
+site/node_modules/
+site/dist/
 *.log
 
 # Редакторы и ОС
 .vscode/
 .idea/
-.DS_Storeassets/img/.mobile-preview.png
+.DS_Store
+
+# Служебный мобильный скриншот
+assets/img/.mobile-preview.png

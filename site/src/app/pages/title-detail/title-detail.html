@@ -1,0 +1,38 @@
+<!-- Детальная страница тайтла -->
+@if (loading()) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 text-center text-mute">Загрузка…</div>
+} @else if (notFound()) {
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 text-center">
+    <p class="text-2xl font-bold">Тайтл не найден</p>
+    <a routerLink="/" class="inline-block mt-4 px-6 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">На главную</a>
+  </div>
+} @else if (title(); as t) {
+  <section class="relative overflow-hidden">
+    <div class="absolute -top-32 -left-20 w-96 h-96 rounded-full bg-neon-violet/30 blur-[120px]"></div>
+    <div class="absolute top-10 right-0 w-80 h-80 rounded-full bg-neon-rose/25 blur-[110px]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-12 relative">
+      <a routerLink="/" class="text-sm text-neon-rose hover:underline">← Назад к каталогу</a>
+      <div class="mt-6 flex flex-col sm:flex-row gap-8">
+        <div class="shrink-0">
+          <img [src]="t.poster" [alt]="t.title" class="w-56 sm:w-64 rounded-2xl object-cover aspect-[2/3] shadow-2xl shadow-black/50" />
+        </div>
+        <div class="flex-1">
+          <span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">{{ t.rating.toLocaleString('ru-RU') }} · рейтинг</span>
+          <h1 class="mt-3 text-3xl sm:text-5xl font-extrabold">{{ t.title }}</h1>
+          <div class="mt-3 flex flex-wrap gap-2 text-sm text-mute">
+            <span class="px-3 py-1 rounded-full bg-surface border border-border">{{ t.year }}</span>
+            <span class="px-3 py-1 rounded-full bg-surface border border-border">{{ t.genre }}</span>
+            @if (t.seasons) {
+              <span class="px-3 py-1 rounded-full bg-surface border border-border">{{ t.seasons }} сезон(ов)</span>
+            }
+          </div>
+          <p class="mt-6 text-mute leading-relaxed max-w-2xl">{{ t.description }}</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <button class="px-6 py-3 rounded-full font-semibold bg-neon-rose text-white shadow-lg shadow-neon-rose/40 hover:opacity-90 transition">▶ Смотреть</button>
+            <button class="px-6 py-3 rounded-full font-semibold bg-surface border border-border hover:border-neon-violet/60 transition">В избранное</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
