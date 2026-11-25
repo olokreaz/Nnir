@@ -1,58 +1,109 @@
 <!-- Каталог NNIR -->
 
-<!-- ЛЕНТА «ПРОДОЛЖИТЬ ПРОСМОТР» -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-  <div class="flex items-center justify-between mb-5">
-    <h2 class="text-xl font-bold">Продолжить просмотр</h2>
-    <a routerLink="/" class="text-sm text-neon-rose hover:underline">Все подборки →</a>
-  </div>
-  <div class="flex gap-4 overflow-x-auto pb-2">
-    @for (t of continueWatching(); track t.id) {
-      <a routerLink="/title/{{ t.id }}" class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
-        <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
-          <img [src]="t.poster" [alt]="t.title" class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
-          <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
-            <div class="font-semibold z-10">{{ t.title }}</div>
-            <div class="text-xs text-mute">{{ t.year }} · {{ t.genre }}</div>
-          </div>
+@if (loading() && sections().length === 0) {
+  <!-- СКЕЛЕТОН -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+    @for (block of [1, 2, 3]; track block) {
+      <div>
+        <div class="w-48 h-6 rounded-full bg-surface animate-pulse mb-5"></div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          @for (card of [1, 2, 3, 4, 5]; track card) {
+            <div class="aspect-[2/3] rounded-xl bg-surface animate-pulse"></div>
+          }
         </div>
-      </a>
-    } @empty {
-      <p class="text-mute">Загрузка…</p>
+      </div>
     }
   </div>
-</section>
-
-<!-- СЕКЦИИ КАТАЛОГА -->
-@for (section of sections(); track section.category) {
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
-      <h2 class="text-lg sm:text-xl font-bold">{{ section.label }}</h2>
-      <a routerLink="/" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      @for (t of section.items; track t.id) {
-        <a routerLink="/title/{{ t.id }}" class="group cursor-pointer">
-          <div class="relative rounded-xl overflow-hidden aspect-[2/3] p-2 flex flex-col items-start justify-end">
-            <img [src]="t.poster" [alt]="t.title" class="absolute inset-0 w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-            <span class="absolute top-2 left-2 z-10 px-2 py-0.5 rounded-md text-[10px] font-bold bg-black/70 text-neon-rose">{{ t.rating.toLocaleString('ru-RU') }}</span>
-            <div class="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-              <div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center text-xl">▶</div>
-            </div>
-            <div class="relative z-10 font-semibold drop-shadow">{{ t.title }}</div>
-            <div class="relative z-10 text-[11px] text-mute">{{ t.year }} · {{ t.genre }}</div>
-          </div>
-        </a>
-      }
-    </div>
-  </section>
-}
-
-<!-- ОШИБКА -->
-@if (error()) {
+} @else if (error(); as err) {
+  <!-- ОШИБКА -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 text-center">
-    <p class="text-neon-rose">{{ error() }}</p>
+    <p class="text-neon-rose">{{ err }}</p>
+    <p class="mt-2 text-sm text-mute">Проверьте, что источник данных доступен — на этапе ПР3 это будет backend API.</p>
   </div>
+} @else {
+  <!-- Уведомление о новых тайтлах, подтянутых из источника -->
+  @if (newsFlash()) {
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+      <div class="flex items-center gap-3 rounded-2xl border border-neon-violet/50 bg-neon-violet/10 px-4 py-3 text-sm">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-rose opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-rose"></span>
+        </span>
+        <span>Каталог обновился: источник данных подтянул новые тайтлы без перезагрузки страницы.</span>
+        <button (click)="newsFlash.set(false)" class="ml-auto text-mute hover:text-pastel" aria-label="Закрыть">✕</button>
+      </div>
+    </div>
+  }
+
+  <!-- ЛЕНТА «ПРОДОЛЖИТЬ ПРОСМОТР» -->
+  @if (continueWatching().length > 0) {
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl font-bold">Продолжить просмотр</h2>
+      </div>
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        @for (t of continueWatching(); track t.id) {
+          <a routerLink="/title/{{ t.id }}" class="shrink-0 w-72 group cursor-pointer hover:-translate-y-1 transition">
+            <div class="relative rounded-2xl overflow-hidden aspect-[16/9]">
+              <img [src]="t.poster" [alt]="t.title" class="absolute inset-0 w-full h-full object-cover" />
+              <div class="absolute inset-0 flex items-center justify-center font-black text-6xl text-white/30 select-none group-hover:scale-110 transition">▶</div>
+              <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+                <div class="font-semibold z-10">{{ t.title }}</div>
+                <div class="text-xs text-mute">{{ t.year }} · {{ t.genre }}</div>
+              </div>
+            </div>
+          </a>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- НОВИНКИ (само подтянутые из источника) -->
+  @if (recent$ | async; as recent) {
+    @if (recent.length > 0) {
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold">Новинки <span class="ml-2 align-middle text-[10px] font-bold uppercase tracking-wide text-neon-rose bg-neon-rose/10 border border-neon-rose/30 px-2 py-0.5 rounded-full">обновлено</span></h2>
+          <span class="text-sm text-mute">подтягиваются автоматически</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          @for (t of recent; track t.id) {
+            <app-title-card [t]="t" />
+          }
+        </div>
+      </section>
+    }
+  }
+
+  <!-- ВЫБОР РЕДАКЦИИ -->
+  @if (featured$ | async; as featured) {
+    @if (featured.length > 0) {
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-xl font-bold">Выбор редакции</h2>
+          <span class="text-sm text-mute">мы пересматриваем это</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          @for (t of featured; track t.id) {
+            <app-title-card [t]="t" />
+          }
+        </div>
+      </section>
+    }
+  }
+
+  <!-- СЕКЦИИ КАТАЛОГА -->
+  @for (section of sections(); track section.category) {
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex items-center justify-between gap-3 mb-5 flex-wrap">
+        <h2 class="text-lg sm:text-xl font-bold">{{ section.label }}</h2>
+        <a routerLink="/category/{{ section.category }}" class="text-sm text-neon-rose hover:underline">Смотреть все →</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (t of section.items; track t.id) {
+          <app-title-card [t]="t" />
+        }
+      </div>
+    </section>
+  }
 }

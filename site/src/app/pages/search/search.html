@@ -1,0 +1,45 @@
+<!-- Поиск -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <h1 class="text-2xl sm:text-3xl font-extrabold">Поиск</h1>
+
+  <form (ngSubmit)="submit(searchInput)" class="mt-5">
+    <div class="flex items-center w-full max-w-xl bg-surface border border-border rounded-full px-4 focus-within:border-neon-violet/60 transition">
+      <svg class="w-4 h-4 text-mute shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input #searchInput type="search" [value]="query()" placeholder="Фильмы, сериалы, аниме, жанры…"
+             class="flex-1 bg-transparent px-3 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none" />
+      <button type="submit" class="shrink-0 text-sm font-semibold text-neon-rose hover:text-pastel transition">Найти</button>
+    </div>
+  </form>
+
+  @if (searching()) {
+    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (card of [1, 2, 3, 4, 5]; track card) {
+        <div class="aspect-[2/3] rounded-xl bg-surface animate-pulse"></div>
+      }
+    </div>
+  } @else if (query()) {
+    <p class="mt-6 text-sm text-mute">По запросу «{{ query() }}» найдено: {{ results().length }}</p>
+
+    @if (results().length > 0) {
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        @for (t of results(); track t.id) {
+          <app-title-card [t]="t" />
+        }
+      </div>
+    } @else {
+      <div class="mt-12 text-center">
+        <p class="text-4xl">🔍</p>
+        <p class="mt-3 text-lg font-semibold">Ничего не найдено</p>
+        <p class="mt-1 text-sm text-mute">Попробуйте другое название, жанр или год.</p>
+        <a routerLink="/" class="inline-block mt-6 px-6 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">Смотреть каталог</a>
+      </div>
+    }
+  } @else {
+    <div class="mt-12 text-center text-mute">
+      <p class="text-4xl">🔎</p>
+      <p class="mt-3">Введите запрос — ищите по названию, жанру, году или актёру.</p>
+    </div>
+  }
+</section>

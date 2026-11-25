@@ -1,0 +1,27 @@
+<!-- Избранное -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <a routerLink="/" class="text-sm text-neon-rose hover:underline">← Назад к каталогу</a>
+  <h1 class="mt-4 text-2xl sm:text-3xl font-extrabold">Избранное</h1>
+
+  @if (loading()) {
+    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (card of [1, 2, 3, 4, 5]; track card) {
+        <div class="aspect-[2/3] rounded-xl bg-surface animate-pulse"></div>
+      }
+    </div>
+  } @else if (items().length > 0) {
+    <p class="mt-2 text-sm text-mute">Тайтлов в избранном: {{ items().length }}</p>
+    <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (t of items(); track t.id) {
+        <app-title-card [t]="t" />
+      }
+    </div>
+  } @else {
+    <div class="mt-16 text-center">
+      <p class="text-4xl">💜</p>
+      <p class="mt-3 text-lg font-semibold">Пока пусто</p>
+      <p class="mt-1 text-sm text-mute">Нажимайте на сердечко на карточках — сюда попадёт всё, что понравилось.</p>
+      <a routerLink="/" class="inline-block mt-6 px-6 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">Смотреть каталог</a>
+    </div>
+  }
+</section>

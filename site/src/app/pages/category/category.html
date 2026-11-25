@@ -1,0 +1,43 @@
+<!-- Страница категории -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <a routerLink="/" class="text-sm text-neon-rose hover:underline">← Назад к каталогу</a>
+
+  <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+    <h1 class="text-2xl sm:text-3xl font-extrabold">{{ label() }}</h1>
+
+    <!-- Сортировка -->
+    <div class="flex items-center gap-2 text-sm">
+      <span class="text-mute">Сортировка:</span>
+      <div class="flex flex-wrap gap-1">
+        @for (key of sortKeys; track key) {
+          <button (click)="setSort(key)"
+                  class="px-3 py-1.5 rounded-full border transition
+                         {{ sort() === key ? 'bg-neon-rose/15 border-neon-rose/60 text-neon-rose' : 'border-border bg-surface text-mute hover:text-pastel' }}">
+            {{ sortLabels[key] }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <p class="mt-2 text-sm text-mute">Тайтлов в категории: {{ items().length }}</p>
+
+  @if (loading()) {
+    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (card of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track card) {
+        <div class="aspect-[2/3] rounded-xl bg-surface animate-pulse"></div>
+      }
+    </div>
+  } @else if (notFound()) {
+    <div class="mt-16 text-center">
+      <p class="text-2xl font-bold">Категория не найдена</p>
+      <a routerLink="/" class="inline-block mt-4 px-6 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">На главную</a>
+    </div>
+  } @else {
+    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      @for (t of items(); track t.id) {
+        <app-title-card [t]="t" />
+      }
+    </div>
+  }
+</section>
