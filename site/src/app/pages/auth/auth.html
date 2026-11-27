@@ -21,7 +21,7 @@
           <div class="mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br from-neon-rose to-neon-violet flex items-center justify-center text-2xl font-black">N</div>
           <h1 class="mt-4 text-2xl font-extrabold">{{ mode() === 'login' ? 'Вход в аккаунт' : 'Создать аккаунт' }}</h1>
           <p class="mt-1 text-sm text-mute">
-            {{ mode() === 'login' ? 'Рады видеть снова' : 'Два поля — и вы в каталоге' }}
+            {{ mode() === 'login' ? 'Рады видеть снова' : (regStep() === 'form' ? 'Два поля — и вы в каталоге' : 'Остался один шаг') }}
           </p>
         </div>
 
@@ -37,30 +37,96 @@
           </button>
         </div>
 
-        <!-- Форма -->
-        <form class="mt-5 space-y-3" (submit)="submit($event, authName, authEmail)">
-          <div>
-            <label class="text-xs text-mute mb-1.5 block">Имя</label>
-            <input #authName type="text" placeholder="Как вас зовут"
-                   class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+        <!-- ВХОД: почта + пароль -->
+        @if (mode() === 'login') {
+          <form class="mt-5 space-y-3" (submit)="login($event, loginEmail, loginPassword)">
+            <div>
+              <label class="text-xs text-mute mb-1.5 block">Email</label>
+              <input #loginEmail type="email" placeholder="name@mail.ru"
+                     class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+            </div>
+            <div>
+              <label class="text-xs text-mute mb-1.5 block">Пароль</label>
+              <input #loginPassword type="password" placeholder="••••••••"
+                     class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+            </div>
+
+            @if (error()) {
+              <p class="text-xs text-neon-rose">⚠ {{ error() }}</p>
+            }
+
+            <button type="submit" [disabled]="busy()"
+                    class="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/25 hover:opacity-90 disabled:opacity-50 transition">
+              {{ busy() ? 'Секунду…' : 'Войти' }}
+            </button>
+          </form>
+        }
+
+        <!-- РЕГИСТРАЦИЯ: шаг 1 — имя/почта/пароль -->
+        @if (mode() === 'register' && regStep() === 'form') {
+          <form class="mt-5 space-y-3" (submit)="register($event, regName, regEmail, regPassword)">
+            <div>
+              <label class="text-xs text-mute mb-1.5 block">Имя</label>
+              <input #regName type="text" placeholder="Как вас зовут"
+                     class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+            </div>
+            <div>
+              <label class="text-xs text-mute mb-1.5 block">Email</label>
+              <input #regEmail type="email" placeholder="name@mail.ru"
+                     class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+            </div>
+            <div>
+              <label class="text-xs text-mute mb-1.5 block">Пароль</label>
+              <input #regPassword type="password" placeholder="Не короче 6 символов"
+                     class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+            </div>
+
+            @if (error()) {
+              <p class="text-xs text-neon-rose">⚠ {{ error() }}</p>
+            }
+
+            <button type="submit" [disabled]="busy()"
+                    class="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/25 hover:opacity-90 disabled:opacity-50 transition">
+              {{ busy() ? 'Секунду…' : 'Продолжить' }}
+            </button>
+          </form>
+        }
+
+        <!-- РЕГИСТРАЦИЯ: шаг 2 — подтверждение почты (выезжает) -->
+        @if (mode() === 'register' && regStep() === 'verify') {
+          <div class="mt-5 rounded-2xl border border-neon-violet/40 bg-neon-violet/10 p-5 animate-[authSlide_.3s_ease-out]">
+            <form class="space-y-3" (submit)="verify($event, codeInput)">
+              <div class="text-center">
+                <div class="mx-auto w-11 h-11 rounded-full bg-gradient-to-br from-neon-rose to-neon-violet flex items-center justify-center text-lg">✉️</div>
+                <p class="mt-3 text-sm font-semibold">Подтвердите почту</p>
+                <p class="mt-1 text-xs text-mute">Мы отправили 6-значный код на ваш email.</p>
+              </div>
+
+              <div>
+                <label class="text-xs text-mute mb-1.5 block">Код из письма</label>
+                <input #codeInput type="text" inputmode="numeric" maxlength="6" placeholder="000000"
+                       class="w-full bg-surface2 border border-border rounded-2xl px-4 py-3 text-center text-lg font-bold tracking-[0.5em] text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+              </div>
+
+              @if (demoCode(); as code) {
+                <p class="text-center text-[11px] text-mute bg-black/30 rounded-xl py-2 px-3">
+                  🔑 Демо-режим: ваш код — <span class="font-bold text-neon-rose tracking-widest">{{ code }}</span>
+                </p>
+              }
+
+              @if (error()) {
+                <p class="text-xs text-neon-rose text-center">⚠ {{ error() }}</p>
+              }
+
+              <button type="submit" [disabled]="busy()"
+                      class="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/25 hover:opacity-90 disabled:opacity-50 transition">
+                {{ busy() ? 'Проверяем…' : 'Подтвердить и войти' }}
+              </button>
+            </form>
           </div>
-          <div>
-            <label class="text-xs text-mute mb-1.5 block">Email</label>
-            <input #authEmail type="email" placeholder="name@mail.ru"
-                   class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
-          </div>
+        }
 
-          @if (error()) {
-            <p class="text-xs text-neon-rose">⚠ {{ error() }}</p>
-          }
-
-          <button type="submit" [disabled]="busy()"
-                  class="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/25 hover:opacity-90 disabled:opacity-50 transition">
-            {{ busy() ? 'Секунду…' : (mode() === 'login' ? 'Войти' : 'Создать аккаунт') }}
-          </button>
-        </form>
-
-        <p class="mt-5 text-center text-[11px] text-mute">Примечание: пока это демо-режим, профиль хранится в вашем браузере. Настоящая авторизация появится на этапе ПР3 (бэкенд).</p>
+        <p class="mt-5 text-center text-[11px] text-mute">Демо-режим: аккаунты и сессия хранятся в браузере. На ПР3 регистрация и вход уйдут на бэкенд (JWT-токены, код на почту по-настоящему).</p>
       </div>
     </div>
   }
