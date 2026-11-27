@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CatalogService } from '../../services/catalog.service';
 import { FavoritesService } from '../../services/favorites.service';
@@ -42,6 +42,7 @@ export class TitleDetailComponent implements OnInit, OnDestroy {
   private readonly subs = new Subscription();
 
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private catalog = inject(CatalogService);
   private favorites = inject(FavoritesService);
   private commentsSvc = inject(CommentsService);
@@ -137,6 +138,11 @@ export class TitleDetailComponent implements OnInit, OnDestroy {
   /** Старт просмотра: обновляем прогресс. */
   startWatching(): void {
     this.history.touch(this.id, 30).subscribe();
+  }
+
+  /** Клик по тегу → поиск по нему. */
+  searchTag(tag: string): void {
+    this.router.navigate(['/search'], { queryParams: { q: tag } });
   }
 
   /** Хлебные крошки: категория → название. */

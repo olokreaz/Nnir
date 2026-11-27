@@ -58,6 +58,30 @@
             </div>
           }
 
+          <!-- ТЕГИ -->
+          @if (t.tags && t.tags.length > 0) {
+            <div class="mt-4 flex flex-wrap gap-2">
+              @for (tag of t.tags; track tag) {
+                <button (click)="searchTag(tag)"
+                        class="px-3 py-1 rounded-full text-xs border border-border bg-surface text-mute hover:border-neon-violet/60 hover:text-pastel transition">
+                  #{{ tag }}
+                </button>
+              }
+            </div>
+          }
+
+          <!-- AI-ОБЗОР -->
+          @if (t.aiSummary) {
+            <div class="mt-6 max-w-2xl rounded-2xl border border-neon-violet/40 bg-gradient-to-br from-neon-violet/15 to-neon-rose/10 p-5">
+              <div class="flex items-center gap-2.5 mb-2">
+                <span class="w-7 h-7 rounded-full bg-gradient-to-br from-neon-rose to-neon-violet flex items-center justify-center text-xs">✨</span>
+                <span class="text-sm font-bold tracking-wide">AI-обзор</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-neon-violet/30 text-pastel">генерируется на ПР3</span>
+              </div>
+              <p class="text-sm text-pastel/90 leading-relaxed italic">«{{ t.aiSummary }}»</p>
+            </div>
+          }
+
           <div class="mt-8 flex flex-wrap gap-3">
             <a routerLink="/" (click)="startWatching()" class="px-6 py-3 rounded-full font-semibold bg-neon-rose text-white shadow-lg shadow-neon-rose/40 hover:opacity-90 transition">▶ Смотреть</a>
             <button (click)="toggleLike()"
@@ -116,6 +140,51 @@
       }
     </div>
   </section>
+
+  <!-- КАДРЫ -->
+  @if (t.stills && t.stills.length > 0) {
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl font-bold">Кадры</h2>
+        <span class="text-sm text-mute">реальные кадры появятся на ПР3</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        @for (still of t.stills; track still) {
+          <div class="rounded-xl overflow-hidden border border-border bg-surface">
+            <img [src]="still" [alt]="'Кадр из ' + t.title" class="w-full aspect-video object-cover hover:scale-105 transition duration-300" loading="lazy" />
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- НОМИНАЦИИ -->
+  @if (t.awards && t.awards.length > 0) {
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl font-bold">Номинации и награды</h2>
+        <span class="text-sm text-mute">откуда: база тайтлов</span>
+      </div>
+      <div class="max-w-2xl space-y-3">
+        @for (a of t.awards; track a.award + a.category + a.year) {
+          <div class="flex items-center gap-4 rounded-2xl bg-surface border border-border p-4">
+            <span class="w-10 h-10 shrink-0 rounded-full flex items-center justify-center text-lg
+                         {{ a.status === 'win' ? 'bg-gradient-to-br from-neon-rose to-neon-violet text-white' : 'bg-surface2 border border-border text-mute' }}">
+              {{ a.status === 'win' ? '🏆' : '🏅' }}
+            </span>
+            <div class="min-w-0">
+              <div class="text-sm font-semibold">{{ a.award }}</div>
+              <div class="text-xs text-mute truncate">{{ a.category }} · {{ a.year }}</div>
+            </div>
+            <span class="ml-auto shrink-0 text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full
+                         {{ a.status === 'win' ? 'bg-neon-rose/15 text-neon-rose border border-neon-rose/40' : 'bg-surface2 text-mute border border-border' }}">
+              {{ a.status === 'win' ? 'победа' : 'номинация' }}
+            </span>
+          </div>
+        }
+      </div>
+    </section>
+  }
 
   <!-- ПОХОЖЕЕ -->
   @if (similar().length > 0) {

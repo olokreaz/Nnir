@@ -54,10 +54,10 @@
           </div>
         </details>
       } @else {
-        <button #authBtn type="button" onclick="document.getElementById('auth-modal').classList.remove('hidden')"
-                class="shrink-0 hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/30 hover:opacity-90 transition">
+        <a routerLink="/auth"
+           class="shrink-0 hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/30 hover:opacity-90 transition">
           Войти
-        </button>
+        </a>
       }
 
       <!-- Мобильное меню -->
@@ -78,10 +78,10 @@
           </nav>
           @if (!user()) {
             <div class="mt-3 pt-3 border-t border-border space-y-2">
-              <button onclick="document.getElementById('auth-modal').classList.remove('hidden')"
-                      class="w-full flex items-center justify-center rounded-full bg-gradient-to-r from-neon-rose to-neon-violet px-3 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition">
+              <a routerLink="/auth"
+                 class="w-full flex items-center justify-center rounded-full bg-gradient-to-r from-neon-rose to-neon-violet px-3 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition">
                 Войти / Зарегистрироваться
-              </button>
+              </a>
             </div>
           }
         </div>
@@ -89,39 +89,6 @@
     </div>
   </div>
 </header>
-
-<!-- Модалка входа (на ПР3 — OAuth/JWT, сейчас — демо-заглушка) -->
-<div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-  <div class="w-full max-w-sm rounded-3xl border border-border bg-surface p-6 shadow-2xl shadow-black/60">
-    <div class="flex items-center justify-between">
-      <h2 class="text-xl font-extrabold">Добро пожаловать</h2>
-      <button type="button" onclick="document.getElementById('auth-modal').classList.add('hidden')" class="w-8 h-8 rounded-full bg-surface2 text-mute hover:text-pastel transition" aria-label="Закрыть">✕</button>
-    </div>
-
-    <div class="mt-4 grid grid-cols-2 rounded-full border border-border p-1 text-sm">
-      <button type="button" (click)="setAuthMode('login')"
-              class="py-1.5 rounded-full transition {{ authMode() === 'login' ? 'bg-neon-rose/15 text-neon-rose font-semibold' : 'text-mute' }}">Вход</button>
-      <button type="button" (click)="setAuthMode('register')"
-              class="py-1.5 rounded-full transition {{ authMode() === 'register' ? 'bg-neon-rose/15 text-neon-rose font-semibold' : 'text-mute' }}">Регистрация</button>
-    </div>
-
-    <form class="mt-5 space-y-3" (submit)="submitAuth($event, authName, authEmail)">
-      <input #authName type="text" placeholder="Имя"
-             class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
-      <input #authEmail type="email" placeholder="Email"
-             class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
-      @if (authError()) {
-        <p class="text-xs text-neon-rose">{{ authError() }}</p>
-      }
-      <button type="submit" [disabled]="busy()"
-              class="w-full py-2.5 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white hover:opacity-90 disabled:opacity-50 transition">
-        {{ busy() ? 'Загрузка…' : (authMode() === 'login' ? 'Войти' : 'Создать аккаунт') }}
-      </button>
-    </form>
-
-    <p class="mt-4 text-center text-[11px] text-mute">Демо-режим: аккаунт хранится в браузере. На ПР3 — настоящий бэкенд с JWT.</p>
-  </div>
-</div>
 
 <main class="min-h-[60vh]">
   <router-outlet />

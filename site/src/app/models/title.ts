@@ -1,6 +1,7 @@
 /** Модель тайтла каталога.
- * Поля likes/addedAt/cast/tags рассчитаны на ПР3: бэкенд будет отдавать их из БД,
- * а фронт уже умеет их показывать — менять придётся только источник (URL). */
+ * Поля likes/addedAt/cast/tags/awards/stills/aiSummary рассчитаны на ПР3:
+ * бэкенд будет отдавать их из БД, а фронт уже умеет их показывать —
+ * менять придётся только источник (URL). */
 export interface Title {
   id: string;
   title: string;
@@ -19,6 +20,14 @@ export interface Title {
   addedAt: string; // ISO-дата
   /** Актёры для детальной страницы. */
   cast?: string[];
+  /** Теги (жанровые метки), кликабельные на детальной. */
+  tags?: string[];
+  /** Номинации/награды: «премия — название — статус/год». */
+  awards?: { award: string; category: string; status: 'win' | 'nom'; year: number }[];
+  /** Кадры из тайтла (галерея на детальной). */
+  stills?: string[];
+  /** Короткий AI-обзор тайтла. На ПР3 его будет генерировать бэкенд. */
+  aiSummary?: string;
   /** Флаг «выбор редакции». */
   featured?: boolean;
 }

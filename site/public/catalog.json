@@ -15,7 +15,27 @@
    "Наталья Селезнёва"
   ],
   "featured": false,
-  "duration": 112
+  "duration": 112,
+  "stills": [
+   "img/stills/ivan-vasilyevich-1.svg",
+   "img/stills/ivan-vasilyevich-2.svg",
+   "img/stills/ivan-vasilyevich-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "ретро",
+   "советское кино",
+   "золотая классика"
+  ],
+  "awards": [
+   {
+    "award": "Анкета журнала «Советский экран»",
+    "category": "Лучший фильм года",
+    "status": "nom",
+    "year": 1974
+   }
+  ],
+  "aiSummary": "Кратко: инженер-изобретатель тимофеев создаёт маши. Зайдёт и тем, кто ждёт экшена, и тем, кто ценит тихие диалоги."
  },
  {
   "id": "brilliantovaya",
@@ -33,7 +53,27 @@
    "Юрий Яковлев"
   ],
   "featured": true,
-  "duration": 110
+  "duration": 110,
+  "stills": [
+   "img/stills/brilliantovaya-1.svg",
+   "img/stills/brilliantovaya-2.svg",
+   "img/stills/brilliantovaya-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "советское кино",
+   "золотая классика",
+   "цитаты"
+  ],
+  "awards": [
+   {
+    "award": "Анкета журнала «Советский экран»",
+    "category": "Лучший фильм года",
+    "status": "win",
+    "year": 1969
+   }
+  ],
+  "aiSummary": "Кратко: скромный экономист семён горбунков случайн. Зайдёт и тем, кто ждёт экшена, и тем, кто ценит тихие диалоги."
  },
  {
   "id": "gentlemen",
@@ -51,7 +91,27 @@
    "Леонид Гайдай"
   ],
   "featured": false,
-  "duration": 116
+  "duration": 116,
+  "stills": [
+   "img/stills/gentlemen-1.svg",
+   "img/stills/gentlemen-2.svg",
+   "img/stills/gentlemen-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "советское кино",
+   "золотая классика",
+   "ретро"
+  ],
+  "awards": [
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   }
+  ],
+  "aiSummary": "Сухо и без спойлеров: заведующий детсадом евгений трошкин отправ. Для своего времени — крепкий середняк, со временем ставший культовым."
  },
  {
   "id": "sluzhebny",
@@ -69,7 +129,27 @@
    "Александр Демьяненко"
   ],
   "featured": false,
-  "duration": 88
+  "duration": 88,
+  "stills": [
+   "img/stills/sluzhebny-1.svg",
+   "img/stills/sluzhebny-2.svg",
+   "img/stills/sluzhebny-3.svg"
+  ],
+  "tags": [
+   "мелодрама",
+   "советское кино",
+   "ретро",
+   "золотая классика"
+  ],
+  "awards": [
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   }
+  ],
+  "aiSummary": "В двух словах: скромный статистик новосельцев и его суров. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "operaciya-y",
@@ -87,7 +167,33 @@
    "Наталья Селезнёва"
   ],
   "featured": false,
-  "duration": 91
+  "duration": 91,
+  "stills": [
+   "img/stills/operaciya-y-1.svg",
+   "img/stills/operaciya-y-2.svg",
+   "img/stills/operaciya-y-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "золотая классика",
+   "ретро",
+   "советское кино"
+  ],
+  "awards": [
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   },
+   {
+    "award": "Премия кинокритиков",
+    "category": "Выбор редакции",
+    "status": "nom",
+    "year": 2019
+   }
+  ],
+  "aiSummary": "Кратко: три новеллы о приключениях студента шурика. Зайдёт и тем, кто ждёт экшена, и тем, кто ценит тихие диалоги."
  },
  {
   "id": "kuhnya",
@@ -105,7 +211,27 @@
    "Марк Богатырёв",
    "Елена Подкаминская"
   ],
-  "featured": true
+  "featured": true,
+  "stills": [
+   "img/stills/kuhnya-1.svg",
+   "img/stills/kuhnya-2.svg",
+   "img/stills/kuhnya-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "ситком",
+   "повседневность",
+   "семья и дружба"
+  ],
+  "awards": [
+   {
+    "award": "ТЭФИ",
+    "category": "Лучший ситком",
+    "status": "nom",
+    "year": 2013
+   }
+  ],
+  "aiSummary": "Сухо и без спойлеров: максим «максик» лавров приходит стажёром в. Для своего времени — крепкий середняк, со временем ставший культовым."
  },
  {
   "id": "interny",
@@ -123,7 +249,27 @@
    "Елена Подкаминская",
    "Сергей Светлаков"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/interny-1.svg",
+   "img/stills/interny-2.svg",
+   "img/stills/interny-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "ситком",
+   "повседневность",
+   "российское"
+  ],
+  "awards": [
+   {
+    "award": "ТЭФИ",
+    "category": "Лучшая комедия",
+    "status": "nom",
+    "year": 2012
+   }
+  ],
+  "aiSummary": "Сухо и без спойлеров: четверо молодых интернов и их циничный нас. Для своего времени — крепкий середняк, со временем ставший культовым."
  },
  {
   "id": "ivanovy",
@@ -141,7 +287,27 @@
    "Сергей Светлаков",
    "Дмитрий Назаров"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/ivanovy-1.svg",
+   "img/stills/ivanovy-2.svg",
+   "img/stills/ivanovy-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "российское",
+   "семья и дружба",
+   "ситком"
+  ],
+  "awards": [
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   }
+  ],
+  "aiSummary": "Сухо и без спойлеров: богатая и бедная семья ивановых узнают, чт. Для своего времени — крепкий середняк, со временем ставший культовым."
  },
  {
   "id": "univer",
@@ -159,7 +325,33 @@
    "Дмитрий Назаров",
    "Марк Богатырёв"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/univer-1.svg",
+   "img/stills/univer-2.svg",
+   "img/stills/univer-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "семья и дружба",
+   "российское",
+   "повседневность"
+  ],
+  "awards": [
+   {
+    "award": "Премия кинокритиков",
+    "category": "Выбор редакции",
+    "status": "nom",
+    "year": 2019
+   },
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   }
+  ],
+  "aiSummary": "В двух словах: студенты провинциального университета в мо. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "fizruk",
@@ -177,7 +369,27 @@
    "Марк Богатырёв",
    "Елена Подкаминская"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/fizruk-1.svg",
+   "img/stills/fizruk-2.svg",
+   "img/stills/fizruk-3.svg"
+  ],
+  "tags": [
+   "комедия",
+   "семья и дружба",
+   "российское",
+   "повседневность"
+  ],
+  "awards": [
+   {
+    "award": "Премия зрительских симпатий",
+    "category": "Любимый тайтл года",
+    "status": "nom",
+    "year": 2018
+   }
+  ],
+  "aiSummary": "Если коротко: бывший бандит олег фомин устраивается учит. Смотрится на одном дыхании — отвлекает от быта лучше любого детокса."
  },
  {
   "id": "death-note",
@@ -194,7 +406,27 @@
    "Томокадзу Сугита",
    "Роми Парк"
   ],
-  "featured": true
+  "featured": true,
+  "stills": [
+   "img/stills/death-note-1.svg",
+   "img/stills/death-note-2.svg",
+   "img/stills/death-note-3.svg"
+  ],
+  "tags": [
+   "триллер",
+   "психология",
+   "аниме",
+   "фантастика"
+  ],
+  "awards": [
+   {
+    "award": "Tokyo Anime Award",
+    "category": "Лучшее аниме",
+    "status": "nom",
+    "year": 2008
+   }
+  ],
+  "aiSummary": "В двух словах: старшеклассник лайт ягами находит тетрадь. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "attack-on-titan",
@@ -212,7 +444,27 @@
    "Роми Парк",
    "Юки Кадзи"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/attack-on-titan-1.svg",
+   "img/stills/attack-on-titan-2.svg",
+   "img/stills/attack-on-titan-3.svg"
+  ],
+  "tags": [
+   "аниме",
+   "драма",
+   "психология",
+   "фантастика"
+  ],
+  "awards": [
+   {
+    "award": "Crunchyroll Anime Awards",
+    "category": "Аниме года",
+    "status": "win",
+    "year": 2021
+   }
+  ],
+  "aiSummary": "Если коротко: человечество прячется за огромными стенами. Смотрится на одном дыхании — отвлекает от быта лучше любого детокса."
  },
  {
   "id": "steins-gate",
@@ -229,7 +481,27 @@
    "Юки Кадзи",
    "Миюки Савасиро"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/steins-gate-1.svg",
+   "img/stills/steins-gate-2.svg",
+   "img/stills/steins-gate-3.svg"
+  ],
+  "tags": [
+   "sci-fi",
+   "психология",
+   "фантастика",
+   "драма"
+  ],
+  "awards": [
+   {
+    "award": "Newtype Anime Awards",
+    "category": "Лучший сериал года",
+    "status": "win",
+    "year": 2012
+   }
+  ],
+  "aiSummary": "В двух словах: безумный учёный окабэ и его друзья случайн. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "fma-brotherhood",
@@ -246,7 +518,27 @@
    "Миюки Савасиро",
    "Томокадзу Сугита"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/fma-brotherhood-1.svg",
+   "img/stills/fma-brotherhood-2.svg",
+   "img/stills/fma-brotherhood-3.svg"
+  ],
+  "tags": [
+   "аниме",
+   "фантастика",
+   "драма",
+   "психология"
+  ],
+  "awards": [
+   {
+    "award": "Tokyo Anime Award",
+    "category": "Аниме года",
+    "status": "win",
+    "year": 2011
+   }
+  ],
+  "aiSummary": "Кратко: братья элрики ищут философский камень, что. Зайдёт и тем, кто ждёт экшена, и тем, кто ценит тихие диалоги."
  },
  {
   "id": "demons",
@@ -264,7 +556,27 @@
    "Томокадзу Сугита",
    "Роми Парк"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/demons-1.svg",
+   "img/stills/demons-2.svg",
+   "img/stills/demons-3.svg"
+  ],
+  "tags": [
+   "фэнтези",
+   "аниме",
+   "фантастика",
+   "психология"
+  ],
+  "awards": [
+   {
+    "award": "Crunchyroll Anime Awards",
+    "category": "Аниме года",
+    "status": "win",
+    "year": 2020
+   }
+  ],
+  "aiSummary": "Если коротко: тандзиро камадо становится охотником на де. Смотрится на одном дыхании — отвлекает от быта лучше любого детокса."
  },
  {
   "id": "breaking-bad",
@@ -282,7 +594,33 @@
    "Бенедикт Камбербэтч",
    "Брайан Крэнстон"
   ],
-  "featured": true
+  "featured": true,
+  "stills": [
+   "img/stills/breaking-bad-1.svg",
+   "img/stills/breaking-bad-2.svg",
+   "img/stills/breaking-bad-3.svg"
+  ],
+  "tags": [
+   "драма",
+   "фэнтези",
+   "интриги",
+   "психология"
+  ],
+  "awards": [
+   {
+    "award": "Эмми",
+    "category": "Лучший драматический сериал",
+    "status": "win",
+    "year": 2013
+   },
+   {
+    "award": "Золотой глобус",
+    "category": "Лучший драматический сериал",
+    "status": "win",
+    "year": 2014
+   }
+  ],
+  "aiSummary": "В двух словах: учитель химии уолтер уайт, узнав о смертел. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "game-of-thrones",
@@ -300,7 +638,33 @@
    "Брайан Крэнстон",
    "Аарон Пол"
   ],
-  "featured": true
+  "featured": true,
+  "stills": [
+   "img/stills/game-of-thrones-1.svg",
+   "img/stills/game-of-thrones-2.svg",
+   "img/stills/game-of-thrones-3.svg"
+  ],
+  "tags": [
+   "драма",
+   "детектив",
+   "психология",
+   "интриги"
+  ],
+  "awards": [
+   {
+    "award": "Эмми",
+    "category": "Лучший драматический сериал",
+    "status": "win",
+    "year": 2015
+   },
+   {
+    "award": "Эмми",
+    "category": "Лучший драматический сериал",
+    "status": "win",
+    "year": 2016
+   }
+  ],
+  "aiSummary": "В двух словах: семь королевств вестероса борются за желез. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "sherlock",
@@ -318,7 +682,33 @@
    "Аарон Пол",
    "Кит Харингтон"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/sherlock-1.svg",
+   "img/stills/sherlock-2.svg",
+   "img/stills/sherlock-3.svg"
+  ],
+  "tags": [
+   "драма",
+   "фэнтези",
+   "психология",
+   "интриги"
+  ],
+  "awards": [
+   {
+    "award": "BAFTA TV",
+    "category": "Лучший драматический сериал",
+    "status": "win",
+    "year": 2011
+   },
+   {
+    "award": "Эмми",
+    "category": "Лучшая мужская роль — Бенедикт Камбербэтч",
+    "status": "win",
+    "year": 2014
+   }
+  ],
+  "aiSummary": "Кратко: современный шерлок холмс раскрывает престу. Зайдёт и тем, кто ждёт экшена, и тем, кто ценит тихие диалоги."
  },
  {
   "id": "the-office",
@@ -336,7 +726,27 @@
    "Кит Харингтон",
    "Бенедикт Камбербэтч"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/the-office-1.svg",
+   "img/stills/the-office-2.svg",
+   "img/stills/the-office-3.svg"
+  ],
+  "tags": [
+   "ситком",
+   "фэнтези",
+   "детектив",
+   "психология"
+  ],
+  "awards": [
+   {
+    "award": "Эмми",
+    "category": "Лучший комедийный сериал",
+    "status": "nom",
+    "year": 2006
+   }
+  ],
+  "aiSummary": "В двух словах: документальный сериал о буднях сотрудников. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  },
  {
   "id": "billions",
@@ -354,6 +764,26 @@
    "Бенедикт Камбербэтч",
    "Брайан Крэнстон"
   ],
-  "featured": false
+  "featured": false,
+  "stills": [
+   "img/stills/billions-1.svg",
+   "img/stills/billions-2.svg",
+   "img/stills/billions-3.svg"
+  ],
+  "tags": [
+   "драма",
+   "интриги",
+   "психология",
+   "фэнтези"
+  ],
+  "awards": [
+   {
+    "award": "Золотой глобус",
+    "category": "Лучшая мужская роль — Пол Джаматти",
+    "status": "nom",
+    "year": 2017
+   }
+  ],
+  "aiSummary": "В двух словах: противостояние безжалостного хедж-фонд-мен. Обязателен к просмотру, если хочется и посмеяться, и подумать."
  }
 ]

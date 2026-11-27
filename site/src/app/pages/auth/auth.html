@@ -1,0 +1,67 @@
+<!-- Страница входа/регистрации -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 py-14">
+  @if (alreadyAuthed()) {
+    <div class="max-w-sm mx-auto text-center">
+      <div class="w-14 h-14 mx-auto rounded-full bg-neon-rose/15 border border-neon-rose/40 flex items-center justify-center text-2xl">✓</div>
+      <h1 class="mt-4 text-2xl font-extrabold">Вы уже вошли</h1>
+      @if (info(); as msg) {
+        <p class="mt-2 text-sm text-mute">{{ msg }}</p>
+      }
+      <div class="mt-6 flex flex-col gap-3">
+        <a routerLink="/" class="px-6 py-3 rounded-full font-semibold bg-neon-rose text-white hover:opacity-90 transition">На главную</a>
+        <button (click)="logout()" class="px-6 py-3 rounded-full font-semibold bg-surface border border-border hover:border-neon-violet/60 transition">Выйти</button>
+      </div>
+    </div>
+  } @else {
+    <div class="max-w-md mx-auto">
+      <a routerLink="/" class="text-sm text-neon-rose hover:underline">← Назад к каталогу</a>
+
+      <div class="mt-6 rounded-3xl border border-border bg-surface p-6 sm:p-8 shadow-2xl shadow-black/40">
+        <div class="text-center">
+          <div class="mx-auto w-12 h-12 rounded-2xl bg-gradient-to-br from-neon-rose to-neon-violet flex items-center justify-center text-2xl font-black">N</div>
+          <h1 class="mt-4 text-2xl font-extrabold">{{ mode() === 'login' ? 'Вход в аккаунт' : 'Создать аккаунт' }}</h1>
+          <p class="mt-1 text-sm text-mute">
+            {{ mode() === 'login' ? 'Рады видеть снова' : 'Два поля — и вы в каталоге' }}
+          </p>
+        </div>
+
+        <!-- Переключатель режима -->
+        <div class="mt-6 grid grid-cols-2 rounded-full border border-border p-1 text-sm">
+          <button type="button" (click)="setMode('login')"
+                  class="py-2 rounded-full transition {{ mode() === 'login' ? 'bg-neon-rose/15 text-neon-rose font-semibold' : 'text-mute hover:text-pastel' }}">
+            Вход
+          </button>
+          <button type="button" (click)="setMode('register')"
+                  class="py-2 rounded-full transition {{ mode() === 'register' ? 'bg-neon-rose/15 text-neon-rose font-semibold' : 'text-mute hover:text-pastel' }}">
+            Регистрация
+          </button>
+        </div>
+
+        <!-- Форма -->
+        <form class="mt-5 space-y-3" (submit)="submit($event, authName, authEmail)">
+          <div>
+            <label class="text-xs text-mute mb-1.5 block">Имя</label>
+            <input #authName type="text" placeholder="Как вас зовут"
+                   class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+          </div>
+          <div>
+            <label class="text-xs text-mute mb-1.5 block">Email</label>
+            <input #authEmail type="email" placeholder="name@mail.ru"
+                   class="w-full bg-surface2 border border-border rounded-2xl px-4 py-2.5 text-sm text-pastel placeholder:text-mute focus:outline-none focus:border-neon-violet/60 transition" />
+          </div>
+
+          @if (error()) {
+            <p class="text-xs text-neon-rose">⚠ {{ error() }}</p>
+          }
+
+          <button type="submit" [disabled]="busy()"
+                  class="w-full py-3 rounded-full font-semibold bg-gradient-to-r from-neon-rose to-neon-violet text-white shadow-lg shadow-neon-rose/25 hover:opacity-90 disabled:opacity-50 transition">
+            {{ busy() ? 'Секунду…' : (mode() === 'login' ? 'Войти' : 'Создать аккаунт') }}
+          </button>
+        </form>
+
+        <p class="mt-5 text-center text-[11px] text-mute">Примечание: пока это демо-режим, профиль хранится в вашем браузере. Настоящая авторизация появится на этапе ПР3 (бэкенд).</p>
+      </div>
+    </div>
+  }
+</section>
