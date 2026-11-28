@@ -1,0 +1,14 @@
+# Не тащим в build-контекст ничего тяжёлого/мусорного (контекст — корень проекта).
+node_modules
+**/node_modules
+site/dist
+tools
+backend/.venv
+backend/.env
+backend/__pycache__
+**/__pycache__
+**/*.pyc
+**/data.db*
+**/.git
+.gitignore
+*.tar.xz

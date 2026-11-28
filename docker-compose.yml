@@ -1,7 +1,21 @@
 services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: nnir-api
+    volumes:
+      - api-data:/srv/data
+    restart: unless-stopped
+
   web:
     build: .
     container_name: nnir-site
     ports:
       - "8080:80"
+    depends_on:
+      - api
     restart: unless-stopped
+
+volumes:
+  api-data:

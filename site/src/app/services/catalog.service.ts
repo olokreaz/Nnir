@@ -5,12 +5,10 @@ import { catchError, distinctUntilChanged, filter, map, shareReplay, startWith, 
 import { Category, SortKey, Title } from '../models/title';
 
 /**
- * Адрес источника данных каталога.
- * Сейчас это статический JSON в public/ (раздаётся nginx) — «универсальный
- * источник»: фронт не знает, кто за ним стоит. На ПР3 здесь будет адрес
- * backend-API (http://localhost:8000/api/catalog), и ничего больше менять не нужно.
+ * Адрес источника данных каталога. ПР3: живой API-бэкенд, проксируется nginx
+ * с того же origin (/api/...), поэтому постеры и данные согласованы, CORS не нужен.
  */
-export const CATALOG_URL = '/catalog.json';
+export const CATALOG_URL = '/api/titles';
 
 /** Как часто переч��тывать каталог (эмуляция «само подтягивающихся» новинок). */
 export const REFRESH_INTERVAL_MS = 30_000;

@@ -9,8 +9,8 @@
 ./start.sh
 ```
 
-Скрипт собирает Angular-приложение в Docker (Node → nginx) и запускает
-контейнер. Сайт открывается на http://localhost:8080
+Скрипт собирает оба контейнера и запускает их: `web` (Angular → nginx, SPA
+и постеры) и `api` (FastAPI + SQLite). Сайт открывается на http://localhost:8080
 
 Вручную:
 
@@ -27,36 +27,44 @@ it/
 │   ├── src/app/
 │   │   ├── models/        # Title, User, Comment
 │   │   ├── services/      # CatalogService, AuthService, FavoritesService,
-│   │   │                  # CommentsService, WatchHistoryService, storage
+│   │   │                  # CommentsService, WatchHistoryService, TokenStore,
+│   │   │                  # auth.interceptor, storage
 │   │   ├── components/    # переиспользуемый title-card (постер + лайк)
 │   │   └── pages/         # каталог, категория, поиск, детальная, избранное, /auth, 404
-│   ├── public/catalog.json  # источник данных (пока статический JSON)
 │   ├── public/fonts/        # Inter локально (сборка не зависит от интернета)
 │   └── public/img/          # постеры + кадры (stills/)
 ├── sites/            # старый статический прототип ПР1 (HTML)
 ├── assets/           # постеры и css (копия для прототипа)
-├── backend/          # серверная часть (ПР3)
+├── backend/          # сервер ПР3: FastAPI + SQLite (app.py, Dockerfile)
 ├── data/             # данные (ПР2)
 ├── tools/            # локальные инструменты сборки (не в git)
-├── Dockerfile        # двухстадийная сборка: Node build → nginx
-├── docker-compose.yml
+├── Dockerfile        # сборка Angular → nginx (статический фронт)
+├── nginx.conf        # раздаёт SPA и проксирует /api/ → backend
+├── docker-compose.yml # web (nginx) + api (FastAPI), volume для БД
 ├── start.sh          # запуск одной командой
 └── .gitignore
 ```
 
-## Внешний источник данных
+## Сервер и база данных (ПР3)
 
-Фронтенд читает каталог через `CatalogService` по адресу `CATALOG_URL`
-(`site/src/app/services/catalog.service.ts`). Сейчас это статический
-`/catalog.json`, но источник универсальный: фронт не знает, кто за ним стоит.
-На этапе ПР3 здесь будет адрес backend-API. Сервис перечитывает источник
-каждые 30 секунд и при фокусе вкладки — новые тайтлы подхватываются без
-перезагрузки страницы («само подтягивающиеся новинки»).
+Бэкенд — FastAPI + SQLite (один файл `backend/app.py`, прямой SQL, без ORM).
+При первом старте БД засеивается каталогом из `site/public/catalog.json`
+(20 тайтлов). Схема: `users`, `sessions`, `titles`, `favorites`, `comments`,
+`watch_progress`. Пароли хранятся pbkdf2-хешем, авторизация — по Bearer-токену.
 
-Все пользовательские данные (лайки, избранное, комментарии, история
-просмотра, профиль) живут в сервисах с асинхронным интерфейсом
-(`services/storage.ts`) — сейчас за ними localStorage, на ПР3 реализация
-заменится на HTTP без изменения компонентов.
+Фронт ходит на относительный `/api/...` — nginx проксирует его на FastAPI,
+поэтому источник данных и постеры согласованы, CORS не нужен.
+
+Регистрация двухшаговая: `POST /api/auth/register` «отправляет» 6-символьный
+код → `POST /api/auth/verify` создаёт аккаунт и выдаёт токен → `login`/`logout`.
+
+Данные пользователя: лайки (`favorites`), комментарии (автор из токена),
+история просмотра (`watch_progress`) — всё хранится на сервере и привязано
+к пользователю. Http-перехватчик (`auth.interceptor.ts`) сам подставляет
+`Authorization: Bearer` в запросы.
+
+Каталог перечитывается каждые 30 секунд и при фокусе вкладки — новые тайтлы
+подхватываются без перезагрузки («само подтягивающиеся новинки»).
 
 ## Стадии (практические работы)
 
