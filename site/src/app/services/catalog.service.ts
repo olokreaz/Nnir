@@ -115,24 +115,20 @@ export class CatalogService {
     );
   }
 
-  /** Поиск по названию, жанру, году, категории. */
+  /** Полноценный поиск: выполняется на бэкенде (морфология, транслитерация,
+   * синонимы, теги/актёры/описания). Пустой запрос — пустой результат. */
   search(query: string): Observable<Title[]> {
-    const q = query.trim().toLowerCase();
+    const q = query.trim();
     if (!q) return of([]);
-    return this.catalog$.pipe(
-      filter((items) => items.length > 0),
-      map((items) =>
-        items.filter((t) => {
-          const year = String(t.year);
-          return (
-            t.title.toLowerCase().includes(q) ||
-            t.genre.toLowerCase().includes(q) ||
-            year.includes(q) ||
-            t.category.includes(q) ||
-            (t.cast ?? []).some((c) => c.toLowerCase().includes(q))
-          );
-        }),
-      ),
+    return this.http.get<Title[]>('/api/search', { params: { q } }).pipe(
+      catchError(() => of([])),
+      // Первый эмит — из кеша, чтобы интерфейс не мигал, дальше — серверный результат.
+      startWith(this.catalog$.getValue().filter((t) => {
+        const y = String(t.year);
+        const lq = q.toLowerCase();
+        return t.title.toLowerCase().includes(lq) || t.genre.toLowerCase().includes(lq) || y.includes(lq);
+      })),
+      distinctUntilChanged(),
     );
   }
 }

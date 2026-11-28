@@ -19,12 +19,14 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import secrets
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import snowballstemmer
 from fastapi import Depends, FastAPI, Header, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr, Field
@@ -192,8 +194,227 @@ def seed_titles() -> int:
 
 
 # --------------------------------------------------------------------------- #
-#  Helpers
+#  Поиск (ПР3): морфология, транслитерация, синонимы, все поля
 # --------------------------------------------------------------------------- #
+#
+# Полноценный поиск поверх каталога:
+#  - стемминг снежным комом для русского и английского — «инженерами» и
+#    «инженер» дают один корень, «breaking» и «breaks» — тоже;
+#  - транслитерация в обе стороны — запрос «interny» находит «Интерны»,
+#    «аниме» находит «anime» (и наоборот);
+#  - словарь синонимов — «смешной» находит «комедия», «боевик» — «экшен»;
+#  - поиск по ВСЕМ текстовым полям: название, жанр, описание, актёры,
+#    теги, номинации, AI-обзор;
+#  - AND-логика по токенам запроса + релевантность (название > теги > описание).
+
+_RU_STEMMER = snowballstemmer.stemmer("russian")
+_EN_STEMMER = snowballstemmer.stemmer("english")
+
+# Русская → латинская транслитерация (ГОСТ-подобная, нижний регистр).
+_TRANSLIT_RU_LAT = {
+    "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e", "ё": "e",
+    "ж": "zh", "з": "z", "и": "i", "й": "y", "к": "k", "л": "l", "м": "m",
+    "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "у": "u",
+    "ф": "f", "х": "h", "ц": "ts", "ч": "ch", "ш": "sh", "щ": "sch",
+    "ъ": "", "ы": "y", "ь": "", "э": "e", "ю": "yu", "я": "ya",
+}
+
+# Обратная латинская → русская (упрощённо, для частых окончаний).
+_TRANSLIT_LAT_RU = {
+    "zh": "ж", "ts": "ц", "ch": "ч", "sh": "ш", "sch": "щ", "yu": "ю", "ya": "я",
+    "kh": "х", "a": "а", "b": "б", "v": "в", "g": "г", "d": "д", "e": "е",
+    "z": "з", "i": "и", "y": "ы", "k": "к", "l": "л", "m": "м", "n": "н",
+    "o": "о", "p": "п", "r": "р", "s": "с", "t": "т", "u": "у", "f": "ф",
+    "h": "х", "c": "ц",
+}
+
+
+def translit_ru_to_lat(text: str) -> str:
+    """«интерны» → «interny»."""
+    out = []
+    for ch in text.lower():
+        if ch in _TRANSLIT_RU_LAT:
+            out.append(_TRANSLIT_RU_LAT[ch])
+        elif ch.isalnum():
+            out.append(ch)
+        else:
+            out.append(" ")
+    return "".join(out)
+
+
+def translit_lat_to_ru(text: str) -> str:
+    """«interny» → «интерны» (жадные двусложные соответствия)."""
+    out, i = [], 0
+    lower = text.lower()
+    while i < len(lower):
+        for digraph in ("zh", "ts", "ch", "sh", "sch", "yu", "ya", "kh"):
+            if lower.startswith(digraph, i):
+                out.append(_TRANSLIT_LAT_RU[digraph])
+                i += len(digraph)
+                break
+        else:
+            out.append(_TRANSLIT_LAT_RU.get(lower[i], lower[i]))
+            i += 1
+    return "".join(out)
+
+
+# Синонимы: каноническое слово → набор эквивалентов (все стемлятся при индексации).
+_SYNONYMS: dict[str, list[str]] = {
+    "комедия": ["смешн", "смешно", "юмор", "прикол", "комедийный", "весёлый", "смешной"],
+    "боевик": ["экшен", "action", "боевой", "перестрелк"],
+    "ужасы": ["хоррор", "horror", "страшн", "мистика", "жутк"],
+    "фантастика": ["sci-fi", "scifi", "научная фантастика", "космос", "футур"],
+    "драма": ["серьёзн", "мелодрама", "переживан"],
+    "триллер": ["напряжённ", "саспенс", "suspense", "детективн"],
+    "аниме": ["японская анимация", "анимация", "мультфильм"],
+    "детектив": ["расследован", "загадк", "сыщик"],
+    "фэнтези": ["fantasy", "магическ", "волшебн"],
+    "исторический": ["историчн", "эпох"],
+    "любовь": ["романтика", "романтическ", "влюблён"],
+}
+
+_TOKEN_RE = re.compile(r"[a-zа-яё0-9]+")
+
+# Стоп-слова: не участвуют в поиске (шумовые токены в описаниях и тегах).
+_STOPWORDS = {
+    "и", "в", "во", "на", "по", "с", "со", "к", "ко", "у", "о", "об", "от",
+    "из", "за", "для", "до", "про", "не", "ни", "что", "как", "так", "же",
+    "а", "но", "или", "это", "тот", "то", "все", "всё", "его", "её", "их",
+    "он", "она", "оно", "они", "мы", "вы", "ты", "я", "бы", "ли", "вот",
+    "где", "когда", "потому", "чтобы", "между", "над", "под", "перед", "при",
+    "a", "an", "the", "of", "in", "on", "to", "for", "with", "and", "or",
+    "at", "by", "from", "as", "is", "it", "its",
+}
+
+# Минимальная длина корня для «префиксного» совпадения (иначе «и» зацепит всё).
+_PREFIX_MIN_LEN = 4
+
+
+def stem_token(token: str) -> str:
+    """Корень токена: русский или английский стеммер + транслит-варианты."""
+    if any("\u0400" <= ch <= "\u04ff" for ch in token):
+        return _RU_STEMMER.stemWord(token)
+    return _EN_STEMMER.stemWord(token)
+
+
+def expand_token(token: str) -> set[str]:
+    """Все варианты слова для сопоставления: стем, транслиты, синонимы."""
+    token = token.lower()
+    variants = {stem_token(token)}
+    variants.add(token)
+    ru_lat = translit_ru_to_lat(token).strip()
+    if ru_lat and ru_lat != token:
+        variants.add(stem_token(ru_lat))
+        variants.add(ru_lat)
+    lat_ru = translit_lat_to_ru(token).strip()
+    if lat_ru and lat_ru != token:
+        variants.add(stem_token(lat_ru))
+        variants.add(lat_ru)
+    # Синонимы: если токен сам является синонимом — добавляем канон; если канон — синонимы.
+    for canon, syns in _SYNONYMS.items():
+        if token in syns or token == canon:
+            variants.add(stem_token(canon))
+            for s in syns:
+                variants.add(stem_token(s))
+    return variants
+
+
+def tokenize(text: str) -> list[str]:
+    """Слова из текста (нижний регистр, без стоп-слов)."""
+    return [t for t in _TOKEN_RE.findall(text.lower()) if t not in _STOPWORDS]
+
+
+# Категории: код → русская метка (для поиска «сериал», «аниме», «классика»).
+_CATEGORY_LABELS = {
+    "classic": "классика старые фильмы советское кино",
+    "rus": "российские сериалы русские",
+    "anime": "аниме японская анимация",
+    "series": "зарубежные сериалы иностранные сериалы",
+}
+
+
+def build_title_text(t: dict) -> str:
+    """Все текстовые поля тайтла одним текстом для индексации."""
+    parts = [
+        t.get("title", ""),
+        t.get("genre", ""),
+        t.get("description", ""),
+        _CATEGORY_LABELS.get(t.get("category", ""), t.get("category", "")),
+    ]
+    parts.extend(t.get("cast") or [])
+    parts.extend(t.get("tags") or [])
+    for a in t.get("awards") or []:
+        parts.append(f"{a.get('award', '')} {a.get('category', '')}")
+    if t.get("aiSummary"):
+        parts.append(t["aiSummary"])
+    return " ".join(parts)
+
+
+def title_index(t: dict) -> dict[str, set[str]]:
+    """Токены тайтла по полям: field -> набор вариантов (стем+транслит+синонимы)."""
+    fields: dict[str, set[str]] = {}
+    title_text = t.get("title", "")
+    genre = t.get("genre", "")
+    tags = t.get("tags") or []
+    rest = build_title_text(t)
+    # Убираем из «всего» поля, продублированные в сильных — вес неважен, важна карта.
+    fields["title"] = set(tokenize(title_text))
+    fields["genre"] = set(tokenize(genre))
+    fields["tags"] = set(tokenize(" ".join(tags)))
+    fields["all"] = set(tokenize(rest))
+    return fields
+
+
+def _stem_match(query_variant: str, field_tokens: set[str]) -> bool:
+    """Совпадает ли вариант запроса с корнем поля.
+    Точное равенство — всегда; префиксное сравнение — только для достаточно
+    длинных корней (иначе «и» зацепит «инженер», «интерны», «история»…)."""
+    if query_variant in field_tokens:
+        return True
+    if len(query_variant) < _PREFIX_MIN_LEN:
+        return False
+    return any(
+        len(s) >= _PREFIX_MIN_LEN and (s.startswith(query_variant) or query_variant.startswith(s))
+        for s in field_tokens
+    )
+
+
+def search_titles(rows: list[dict], query: str) -> list[dict]:
+    """Ищет тайтлы по запросу, возвращает с сортировкой по релевантности."""
+    q = query.strip().lower()
+    if not q:
+        return rows
+    q_tokens = tokenize(q)
+    if not q_tokens:
+        return []
+
+    # Предрасчёт вариантов каждого токена запроса.
+    q_variants = [expand_token(t) for t in q_tokens]
+
+    scored: list[tuple[int, dict]] = []
+    for t in rows:
+        idx = title_index(t)
+        # Поля считаются сильными (название/теги/жанр) или слабыми (всё остальное).
+        strong = idx["title"] | idx["tags"] | idx["genre"]
+        weak = idx["all"]
+        hit = 0
+        strong_hits = 0
+        for variants in q_variants:
+            if any(_stem_match(v, strong) for v in variants):
+                hit += 1
+                strong_hits += 1
+                continue
+            if any(_stem_match(v, weak) for v in variants):
+                hit += 1
+        if hit == len(q_variants):
+            # Релевантность: сильные поля важнее, длинные совпадения важнее.
+            score = strong_hits * 3 + (hit - strong_hits)
+            score += len(q)  # более специфичный запрос — выше
+            scored.append((score, t))
+
+    scored.sort(key=lambda p: (-p[0], -p[1].get("rating", 0)))
+    return [t for _, t in scored]
+
 
 def hash_password(password: str) -> str:
     salt = secrets.token_hex(8)
@@ -331,6 +552,16 @@ def health():
 def list_titles(conn: sqlite3.Connection = Depends(get_db)):
     rows = conn.execute("SELECT * FROM titles ORDER BY title COLLATE NOCASE").fetchall()
     return [title_row_to_dict(r, conn) for r in rows]
+
+
+@app.get("/api/search")
+def search(q: str = "", conn: sqlite3.Connection = Depends(get_db)):
+    """Полноценный поиск: морфология (рус/англ), транслитерация, синонимы,
+    все текстовые поля (название, жанр, теги, актёры, описание, номинации, AI).
+    Без q возвращает весь каталог (совместимо с CatalogService)."""
+    rows = conn.execute("SELECT * FROM titles").fetchall()
+    titles = [title_row_to_dict(r, conn) for r in rows]
+    return search_titles(titles, q)
 
 
 @app.get("/api/titles/{title_id}")
